@@ -2,20 +2,7 @@ import { useState,useEffect } from "react";
 
 
 export default (props) => {
-  const [cast,setCast] = useState([]);
-
-  async function fetchCast() {
-    const response = await fetch('cast.json');
-    
-    setCast(await response.json());
-
-    //console.log(cast);
-  }
-
-  useEffect(()=>{
-    fetchCast();
-  }
-  );
+  
   return (
     <div style={
       {
@@ -25,7 +12,7 @@ export default (props) => {
         marginBottom : '1rem'
     }
     }>
-      {cast.map(member => (
+      {props.cast.map(member => (
         <a onClick = {() => {props.onChoice(member)}} key={member.id} data-tooltip={member.name}>
         <img src={`images/${member.slug}_tn.svg`} alt={member.name} />
         </a>
